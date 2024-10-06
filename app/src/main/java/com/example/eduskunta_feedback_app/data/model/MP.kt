@@ -1,6 +1,5 @@
 package com.example.eduskunta_feedback_app.data.model
 
-
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

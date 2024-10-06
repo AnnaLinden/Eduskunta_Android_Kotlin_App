@@ -3,45 +3,37 @@ package com.example.eduskunta_feedback_app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.work.*
+import com.example.eduskunta_feedback_app.ui.Navigation
 import com.example.eduskunta_feedback_app.ui.theme.Eduskunta_Feedback_AppTheme
+import com.example.eduskunta_feedback_app.workmanager.MPRefreshWorker
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        scheduleDataRefresh()
+
+
         setContent {
             Eduskunta_Feedback_AppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Navigation()
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Eduskunta_Feedback_AppTheme {
-        Greeting("Android")
+    private fun scheduleDataRefresh() {
+        val workRequest = PeriodicWorkRequestBuilder<MPRefreshWorker>(12, TimeUnit.HOURS)
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+            )
+            .build()
+        WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
+            "MPRefreshWork",
+            ExistingPeriodicWorkPolicy.KEEP,
+            workRequest
+        )
     }
 }

@@ -1,11 +1,13 @@
 package com.example.eduskunta_feedback_app.data
 
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.eduskunta_feedback_app.data.model.MP
 import kotlinx.coroutines.flow.Flow
 
+@Dao
 interface MPDao {
     @Query("SELECT * FROM mp_table")
     fun getAllMPs(): Flow<List<MP>>
