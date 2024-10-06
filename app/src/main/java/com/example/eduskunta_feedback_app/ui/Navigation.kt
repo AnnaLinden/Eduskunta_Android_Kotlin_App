@@ -28,7 +28,7 @@ fun Navigation() {
             arguments = listOf(navArgument("mpId") { type = NavType.IntType })
         ) { backStackEntry ->
             val mpId = backStackEntry.arguments?.getInt("mpId") ?: 0
-            MPDetailScreen(mpId)
+            MPDetailScreen(navController, mpId)
         }
     }
 }

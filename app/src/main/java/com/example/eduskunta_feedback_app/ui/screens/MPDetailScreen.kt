@@ -4,20 +4,24 @@ import android.app.Application
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.eduskunta_feedback_app.ui.getFullImageUrl
 import com.example.eduskunta_feedback_app.ui.viewmodels.MPDetailViewModel
 import com.example.eduskunta_feedback_app.ui.viewmodels.MPDetailViewModelFactory
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MPDetailScreen(mpId: Int) {
+fun MPDetailScreen(navController: NavHostController, mpId: Int) {
     val context = LocalContext.current
     val application = context.applicationContext as Application
     val viewModel: MPDetailViewModel = viewModel(
@@ -28,7 +32,13 @@ fun MPDetailScreen(mpId: Int) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("MP Details") })
+            TopAppBar(title = { Text("MP Details") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
         }
     ) { paddingValues ->
         mp?.let { mpData ->

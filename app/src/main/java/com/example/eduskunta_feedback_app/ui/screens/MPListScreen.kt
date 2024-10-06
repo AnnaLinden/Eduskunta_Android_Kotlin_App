@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -27,7 +29,13 @@ fun MPListScreen(navController: NavHostController, party: String) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("$party MPs") })
+            TopAppBar(title = { Text("$party MPs") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
         }
     ) { paddingValues ->
         LazyColumn(contentPadding = paddingValues) {
