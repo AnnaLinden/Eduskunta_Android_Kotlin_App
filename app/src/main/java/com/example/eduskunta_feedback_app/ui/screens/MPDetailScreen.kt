@@ -51,7 +51,7 @@ fun MPDetailScreen(navController: NavHostController, mpId: Int) {
             val imageUrl = getFullImageUrl(mpData.pictureUrl)
             Column(modifier = Modifier.padding(paddingValues).padding(16.dp)) {
                 // Display MP's name
-                Text(text = "${mpData.firstName} ${mpData.lastName}", style = MaterialTheme.typography.titleLarge)
+                Text(text = "${mpData.firstname} ${mpData.lastname}", style = MaterialTheme.typography.titleLarge)
                 // Display MP's image
                 Image(
                 painter = rememberAsyncImagePainter(imageUrl),

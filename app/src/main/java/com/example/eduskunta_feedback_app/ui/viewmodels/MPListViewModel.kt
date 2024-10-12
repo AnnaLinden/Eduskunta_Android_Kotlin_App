@@ -25,7 +25,7 @@ class MPListViewModel(application: Application, party: String) : AndroidViewMode
         repository = MPRepository(database.mpDao())
         viewModelScope.launch {
             repository.getMPsByParty(party).collect { mpList ->
-                _mps.value = mpList.sortedBy { it.lastName }
+                _mps.value = mpList.sortedBy { it.lastname }
             }
         }
     }

@@ -2,6 +2,7 @@ package com.example.eduskunta_feedback_app.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 // Date: 12.10.2024
 // Name: Anna Lindén 2217933
@@ -10,8 +11,8 @@ import androidx.room.PrimaryKey
 data class MP (
     @PrimaryKey val hetekaId: Int,
     val seatNumber: Int?,
-    val lastName: String?,
-    val firstName: String?,
+    val lastname: String?,
+    val firstname: String?,
     val party: String?,
     val minister: Boolean?,
     val pictureUrl: String?

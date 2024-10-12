@@ -44,7 +44,7 @@ fun MPListScreen(navController: NavHostController, party: String) {
             items(mps.size) { index ->
                 val mp = mps[index]
                 Text(
-                    text = "${mp. firstName} ${mp.lastName}",
+                    text = "${mp. firstname} ${mp.lastname}",
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
