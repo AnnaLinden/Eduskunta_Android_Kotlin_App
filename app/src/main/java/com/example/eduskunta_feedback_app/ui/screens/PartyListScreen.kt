@@ -14,6 +14,9 @@ import androidx.navigation.NavHostController
 import com.example.eduskunta_feedback_app.ui.viewmodels.PartyListViewModel
 import com.example.eduskunta_feedback_app.ui.viewmodels.PartyListViewModelFactory
 
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: Composable screen displaying a list of political parties.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PartyListScreen(navController: NavHostController) {

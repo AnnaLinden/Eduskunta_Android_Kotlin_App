@@ -6,6 +6,9 @@ import androidx.work.WorkerParameters
 import com.example.eduskunta_feedback_app.data.ParliamentDatabase
 import com.example.eduskunta_feedback_app.data.repository.MPRepository
 
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: WorkManager worker class that refreshes MP data periodically.
 class MPRefreshWorker(
     context: Context,
     workerParams: WorkerParameters

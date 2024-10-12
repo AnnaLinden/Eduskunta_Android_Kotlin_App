@@ -18,15 +18,21 @@ import com.example.eduskunta_feedback_app.ui.getFullImageUrl
 import com.example.eduskunta_feedback_app.ui.viewmodels.MPDetailViewModel
 import com.example.eduskunta_feedback_app.ui.viewmodels.MPDetailViewModelFactory
 
-
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: Composable screen displaying detailed information about an MP,
+// including comments and the ability to add new comments.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MPDetailScreen(navController: NavHostController, mpId: Int) {
+    // Get the application context and ViewModel
     val context = LocalContext.current
     val application = context.applicationContext as Application
     val viewModel: MPDetailViewModel = viewModel(
         factory = MPDetailViewModelFactory(application, mpId)
     )
+
+    // Collect MP data and comments from the ViewModel
     val mp by viewModel.mp.collectAsState(initial = null)
     val comments by viewModel.comments.collectAsState(initial = emptyList())
 
@@ -44,15 +50,20 @@ fun MPDetailScreen(navController: NavHostController, mpId: Int) {
         mp?.let { mpData ->
             val imageUrl = getFullImageUrl(mpData.pictureUrl)
             Column(modifier = Modifier.padding(paddingValues).padding(16.dp)) {
-                Text(text = "${mpData.firstname} ${mpData.lastname}", style = MaterialTheme.typography.titleLarge)
+                // Display MP's name
+                Text(text = "${mpData.firstName} ${mpData.lastName}", style = MaterialTheme.typography.titleLarge)
+                // Display MP's image
                 Image(
                 painter = rememberAsyncImagePainter(imageUrl),
                     contentDescription = null,
                     modifier = Modifier.size(128.dp)
                 )
+                // Display party and minister status
                 Text(text = "Party: ${mpData.party}")
                 Text(text = "Minister: ${if (mpData.minister == true) "Yes" else "No"}")
                 Spacer(modifier = Modifier.height(16.dp))
+
+                // Comments section
                 Text(text = "Comments", style = MaterialTheme.typography.titleMedium)
                 LazyColumn {
                     items(comments.size) { index ->
@@ -61,6 +72,8 @@ fun MPDetailScreen(navController: NavHostController, mpId: Int) {
                     }
                 }
                 Spacer(modifier = Modifier.height(16.dp))
+
+                // Input fields for adding a comment
                 var commentText by remember { mutableStateOf("") }
                 var grade by remember { mutableStateOf(0f) }
                 OutlinedTextField(
@@ -70,6 +83,8 @@ fun MPDetailScreen(navController: NavHostController, mpId: Int) {
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+
+                // Grade slider
                 Text(text = "Grade: ${grade.toInt()}/5")
                 Slider(
                     value = grade,
@@ -79,6 +94,8 @@ fun MPDetailScreen(navController: NavHostController, mpId: Int) {
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
+
+                // Submit button
                 Button(onClick = {
                     viewModel.addComment(commentText, grade.toInt())
                     commentText = ""

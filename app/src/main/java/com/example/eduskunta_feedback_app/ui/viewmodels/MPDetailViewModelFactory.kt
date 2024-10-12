@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
+
 class MPDetailViewModelFactory(
     private val application: Application,
     private val mpId: Int

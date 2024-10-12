@@ -9,6 +9,9 @@ import com.example.eduskunta_feedback_app.ui.theme.Eduskunta_Feedback_AppTheme
 import com.example.eduskunta_feedback_app.workmanager.MPRefreshWorker
 import java.util.concurrent.TimeUnit
 
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: Main activity that sets up the app's UI and schedules data refresh work.
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // Schedules periodic data refresh using WorkManager
     private fun scheduleDataRefresh() {
         val workRequest = PeriodicWorkRequestBuilder<MPRefreshWorker>(12, TimeUnit.HOURS)
             .setConstraints(

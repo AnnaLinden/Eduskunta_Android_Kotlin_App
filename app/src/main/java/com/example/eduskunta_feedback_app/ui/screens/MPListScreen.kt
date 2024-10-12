@@ -16,7 +16,9 @@ import androidx.navigation.NavHostController
 import com.example.eduskunta_feedback_app.ui.viewmodels.MPListViewModel
 import com.example.eduskunta_feedback_app.ui.viewmodels.MPListViewModelFactory
 
-
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: Composable screen displaying a list of MPs belonging to a selected party.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MPListScreen(navController: NavHostController, party: String) {
@@ -42,7 +44,7 @@ fun MPListScreen(navController: NavHostController, party: String) {
             items(mps.size) { index ->
                 val mp = mps[index]
                 Text(
-                    text = "${mp.firstname} ${mp.lastname}",
+                    text = "${mp. firstName} ${mp.lastName}",
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {

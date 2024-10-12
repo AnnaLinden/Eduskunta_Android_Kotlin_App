@@ -8,7 +8,9 @@ import com.example.eduskunta_feedback_app.ui.screens.MPDetailScreen
 import com.example.eduskunta_feedback_app.ui.screens.MPListScreen
 import com.example.eduskunta_feedback_app.ui.screens.PartyListScreen
 
-
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: Composable function handling the navigation graph for the app.
 @Composable
 fun Navigation() {
     val navController = rememberNavController()

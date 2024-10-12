@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+// Date: 12.10.2024
+// Name: Anna Lindén 2217933
+// Description: ViewModel for the PartyListScreen.
 class PartyListViewModel(application: Application) : AndroidViewModel(application) {
     private val _parties = MutableStateFlow<List<String>>(emptyList())
     val parties: StateFlow<List<String>> = _parties
